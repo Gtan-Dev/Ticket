@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .relative:hover .absolute {
+  display: block;
+}
+
+.absolute {
+  display: none;
+}
+
+.logg:hover {
+  background-color: #CBD5E0;
+}
+.nav-menuss:hover {
+  background-color: #26415f;
+}
+    </style>
+</head>
+<body>
+  <header class="bg-white shadow fixed right-0 top-0 left-0">
+    <nav class="flex items-center justify-between py-4">
+        <div>
+          <a href="/admin" class="mx-4 font-bold text-xl">Ticket Booking | Admin</a>
+        </div>
+        <div>
+          <div class="relative inline-block mx-4">
+            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+              <span class="mr-1">{{username}}</span>
+              <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
+              </svg>
+            </button>
+            <ul class="absolute hidden text-gray-700 pt-1">
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Profile</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Settings</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/logout">Logout</a></li>
+            </ul>
+          </div>
+          
+        </div>
+    </nav>
+  </header>
+<div class="flex top-0">
+  <!-- Sidebar -->
+  <div class="bg-gray-800 text-white h-screen w-64 px-4 py-8">
+    <h2 class="font-bold text-2xl mb-4 mt-10">Dashboard</h2>
+    <nav class="mx-4">
+      <ul>
+        <li>
+          <a href="#" class="block nav-menuss hover:text-gray-400 py-2">Events</a>
+        </li>
+        <li>
+          <a href="#" class="block nav-menuss hover:text-gray-400 py-2">Tickets</a>
+        </li>
+        <li>
+          <a href="#" class="block nav-menuss hover:text-gray-400 py-2">Bookings</a>
+        </li>
+        <li>
+          <a href="#" class="block nav-menuss hover:text-gray-400 py-2">Customers</a>
+        </li>
+        <li>
+          <a href="#" class="block nav-menuss hover:text-gray-400 py-2">Settings</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Content -->
+  <div class="flex-1 p-10 mt-10">
+    <!-- Your content here -->
+    <h2 class="font-bold text-2xl mb-4">Event Ticket Booking System</h2>
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Events</h3>
+          <p class="text-gray-700 text-sm">View and manage your events</p>
+          <a href="#" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Events</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Tickets</h3>
+          <p class="text-gray-700 text-sm">View and manage your tickets</p>
+          <a href="#" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Tickets</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Bookings</h3>
+          <p class="text-gray-700 text-sm">View and manage your bookings</p>
+          <a href="#" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Bookings</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Customers</h3>
+          <p class="text-gray-700 text-sm">View and manage your customers</p>
+          <a href="#" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Customers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <footer class="bg-gray-900 text-gray-500 pt-16 pb-8">
+    <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-xl font-semibold mb-4">Contact Us</h2>
+          <p class="mb-2">123 Main St.</p>
+          <p class="mb-2">Anytown, USA 12345</p>
+          <p class="mb-4">Email: info@bookingticket.com</p>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="text-gray-500 hover:text-gray-400"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" class="text-gray-500 hover:text-gray-400"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" class="text-gray-500 hover:text-gray-400"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+          <ul class="mb-4">
+            <li><a href="#" class="text-gray-500 hover:text-gray-400">About Us</a></li>
+            <li><a href="#" class="text-gray-500 hover:text-gray-400">FAQ</a></li>
+            <li><a href="#" class="text-gray-500 hover:text-gray-400">Terms of Service</a></li>
+            <li><a href="#" class="text-gray-500 hover:text-gray-400">Privacy Policy</a></li>
+          </ul>
+          <a href="#" class="text-gray-500 hover:text-gray-400">Subscribe to Our Newsletter</a>
+        </div>
+      </div>
+      <hr class="border-gray-700 my-8">
+      <div class="flex justify-between items-center">
+        <p class="text-sm">© 2023 BookingTicket, Inc. All rights reserved.</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="text-gray-500 hover:text-gray-400">Terms of Service</a></li>
+          <li><a href="#" class="text-gray-500 hover:text-gray-400">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
