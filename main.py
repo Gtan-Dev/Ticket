@@ -1,36 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-import mysql.connector
+from flask import Flask, render_template, request, redirect, url_for, sessions
 
-connection = mysql.connector.connect(
- host='localhost',
-    port='3306',
-    database='ticket_booking_db',
-    user='root',
-    password=''
-)
-cursor = connection.cursor()
+
 app = Flask(__name__)
-app.secret_key = "super secret key"
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
-    msg = ''
-    if request.method=='POST':
-        username = request.form['username']
-        password = request.form['password']
-        cursor.execute('SELECT * FROM users WHERE username=%s AND password=%s', (username, password))
-        record = cursor.fetchall()
-        if record:
-            session['loggedin'] = True
-            session['username'] = username
-            return redirect(url_for('admin'))
-        else:
-            msg = 'Invalid credentials'
-    return render_template('login.html', msg = msg)
+    return render_template('login.html')
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html', username = session['username'])
+    return render_template('admin.html')
 
 @app.route('/')
 def home():
@@ -39,6 +18,10 @@ def home():
 @app.route('/events')
 def events():
     return render_template('events.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/eventDetails')
 def eventDetails():
@@ -52,13 +35,34 @@ def payment():
 def regist():
     return (render_template('regist.html'))
 
-@app.route('/logout')
-def logout():
-    session.pop('loggedin', None)
-    session.pop('username', None)
-    return redirect(url_for('login'))
+@app.route('/setting')
+def setting():
+    return (render_template('admin-setting.html'))
 
-app.run(host='localhost', port=5000)
+@app.route('/ticket')
+def ticket():
+    return (render_template('admin-ticket.html'))
 
-app = Flask(__name__)
-app.debug = True
+@app.route('/profile')
+def profile():
+    return (render_template('profile.html'))
+
+@app.route('/booking')
+def booking():
+    return (render_template('admin-booking.html'))
+
+@app.route('/customers')
+def customers():
+    return (render_template('admin-customers.html'))
+
+@app.route('/ad-events')
+def ad_events():
+    return (render_template('ad-events.html'))
+
+# app.run(host='localhost', port=5000)
+
+# app = Flask(__name__)
+# app.debug = True
+
+if __name__ == "__main__":
+    app.run(debug=True)
