@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, sessions
+import apps
 
 
 app = Flask(__name__)
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+@app.route('/login', methods=['POST'])
+def log():
+    data = request.form
+    return apps.login(data)
 
 @app.route('/admin')
 def admin():
@@ -30,10 +32,6 @@ def eventDetails():
 @app.route('/payment')
 def payment():
     return render_template('payment.html')
-
-@app.route('/regist')
-def regist():
-    return (render_template('regist.html'))
 
 @app.route('/setting')
 def setting():
