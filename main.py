@@ -62,5 +62,20 @@ def searchevent():
 def purchaseTicket():
     return (render_template('admin/ticket-purchase/purchase-ticket.html'))
 
+#route to add an event to database
+@app.route('/addEvent', methods=['GET', 'POST'])
+def store():
+    name = request.form['name']
+    date = request.form['date']
+    time = request.form['time']
+    location = request.form['location']
+    ticket_price = request.form['ticket_price']
+    # sql = "INSERT INTO `users` (`name`, `date`, `time`, `location`, `ticket_price`) VALUES(%s, %s, %s, %s, %s)"
+    # value = (name, date, time, location, ticket_price)
+    # mycursor.execute(sql, value)
+    # mydb.commit()
+    
+    return render_template('admin/listevent.html', error = 'Data inserted successfully')
+ 
 if __name__ == "__main__":
     app.run(debug=True)
