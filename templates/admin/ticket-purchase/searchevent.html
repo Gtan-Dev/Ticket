@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="my-4">
+          <h2 class="text-2xl font-bold text-gray-800">Search Events</h2>
+        </div>
+        <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="/events/search" method="GET">
+          <div class="my-4 mx-6">
+            <label class="block text-gray-700 font-bold mb-2" for="search_query">Search Query</label>
+            <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="search_query" placeholder="Enter event name or keywords" required>
+          </div>
+          <div class="my-4 mx-6">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+          </div>
+        </form>
+      </div>
+      
+</body>
+</html>

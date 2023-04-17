@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .relative:hover .absolute {
+  display: block;
+}
+
+.absolute {
+  display: none;
+}
+
+.logg:hover {
+  background-color: #CBD5E0;
+}
+.nav-menuss:hover {
+  background-color: #26415f;
+}
+    </style>
+</head>
+<body>
+  <header class="bg-white shadow py-4 fixed right-0 top-0 left-0">
+    <nav class="flex items-center justify-between py-4">
+        <div>
+          <a href="/admin" class="mx-4 font-bold text-3xl">Ticket Booking | Admin</a>
+        </div>
+        <div>
+          <div class="relative inline-block mx-4">
+            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+              <span class="mr-1">User</span>
+              <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
+              </svg>
+            </button>
+            <ul class="absolute hidden text-gray-700 pt-1">
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/profile">Profile</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/setting">Settings</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  </header>
+<div class="flex mt-12 top-0">
+  <!-- Sidebar -->
+  <div class="bg-gray-800 text-white h-screen w-64 mt-12 px-4">
+    <h2 class="font-bold text-xl mb-4 mt-10">Dashboard</h2>
+    <nav class="mx-4">
+      <ul>
+        <li>
+          <a href="/ad-events" class="block nav-menuss hover:text-gray-400 py-2">Events</a>
+        </li>
+        <li>
+          <a href="/booking" class="block nav-menuss hover:text-gray-400 py-2">Bookings</a>
+        </li>
+        <li>
+          <a href="/customers" class="block nav-menuss hover:text-gray-400 py-2">Customers</a>
+        </li>
+        <li>
+          <a href="/setting" class="block nav-menuss hover:text-gray-400 py-2">Settings</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Content -->
+  <div class="flex-1 p-10 mt-10">
+    <!-- Your content here -->
+    <h2 class="font-bold text-2xl mb-4">Event Ticket Booking System</h2>
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Events</h3>
+          <p class="text-gray-700 text-sm">View and manage your events</p>
+          <a href="/ad-events" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Events</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Tickets</h3>
+          <p class="text-gray-700 text-sm">View and manage your tickets</p>
+          <a href="/ticket" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Tickets</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Bookings</h3>
+          <p class="text-gray-700 text-sm">View and manage your bookings</p>
+          <a href="/booking" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Bookings</a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="font-bold text-lg mb-4">Customers</h3>
+          <p class="text-gray-700 text-sm">View and manage your customers</p>
+          <a href="/customers" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Customers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- this is fooeter section -->
+
+<footer class="bg-gray-900 text-gray-400 pt-12 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-between">
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-8">
+        <h2 class="text-lg font-bold mb-4">About Us</h2>
+        <p class="text-sm leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci a tellus cursus, sed ultrices odio molestie. Praesent vel lacus eros.</p>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-facebook-square fa-lg mr-4"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-twitter-square fa-lg mr-4"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-instagram-square fa-lg mr-4"></i>
+        </a>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-8">
+        <h2 class="text-lg font-bold mb-4">Quick Links</h2>
+        <ul class="list-none text-sm">
+          <li class="mb-2">
+            <a href="#" class="text-gray-400 hover:text-white">Home</a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-gray-400 hover:text-white">Events</a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-gray-400 hover:text-white">Contact Us</a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-gray-400 hover:text-white">FAQ</a>
+          </li>
+        </ul>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-8">
+        <h2 class="text-lg font-bold mb-4">Contact Us</h2>
+        <ul class="list-none text-sm">
+          <li class="mb-2">1234 Main Street</li>
+          <li class="mb-2">Suite 200</li>
+          <li class="mb-2">New York, NY 10001</li>
+          <li class="mb-2">Phone: (555) 555-5555</li>
+          <li class="mb-2">Email: info@example.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+      <p class="text-sm text-gray-500">&copy; 2023 Example Company. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  

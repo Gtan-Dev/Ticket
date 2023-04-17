@@ -1,17 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, sessions
-import apps
-
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
 
-@app.route('/login', methods=['POST'])
-def log():
-    data = request.form
-    return apps.login(data)
-
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    return render_template('admin/admin.html')
 
 @app.route('/')
 def home():
@@ -37,30 +30,37 @@ def payment():
 def setting():
     return (render_template('admin-setting.html'))
 
-@app.route('/ticket')
-def ticket():
-    return (render_template('admin-ticket.html'))
-
 @app.route('/profile')
 def profile():
-    return (render_template('profile.html'))
+    return (render_template('admin/profile.html'))
 
 @app.route('/booking')
 def booking():
-    return (render_template('admin-booking.html'))
+    return (render_template('admin/admin-booking.html'))
 
 @app.route('/customers')
 def customers():
-    return (render_template('admin-customers.html'))
+    return (render_template('admin/admin-customers.html'))
 
 @app.route('/ad-events')
 def ad_events():
-    return (render_template('ad-events.html'))
+    return (render_template('admin/ad-events.html'))
 
-# app.run(host='localhost', port=5000)
+@app.route('/createevent')
+def createEvent():
+    return (render_template('admin/createevent.html'))
 
-# app = Flask(__name__)
-# app.debug = True
+@app.route('/editevent')
+def editevent():
+    return (render_template('admin/editevent.html'))
+
+@app.route('/searchevent')
+def searchevent():
+    return (render_template('admin/ticket-purchase/searchevent.html'))
+
+@app.route('/purchaseticket')
+def purchaseTicket():
+    return (render_template('admin/ticket-purchase/purchase-ticket.html'))
 
 if __name__ == "__main__":
     app.run(debug=True)
