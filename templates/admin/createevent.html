@@ -70,10 +70,15 @@
     <div class="flex justify-center items-center">
         <!-- Create Event page -->
   <div class="container mx-auto">
+
+    <div class="bg-slate-900 text-green-300 py-2 rounded flex justify-center">
+      {{ success }}
+    </div>
+
     <div class="my-4">
       <h2 class="text-2xl font-bold text-gray-800">Create Event</h2>
     </div>
-    <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="/addEvent" method="POST">
+    <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="/addEvent" method="POST" enctype="multipart/form-data">
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="name">Event Name</label>
         <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" required>
@@ -94,6 +99,10 @@
 <div class="my-4 mx-6">
   <label class="block font-bold text-gray-800 mb-2" for="ticket_price">Ticket Price</label>
   <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
+</div>
+<div class="my-4 mx-6">
+  <label class="block font-bold text-gray-800 mb-2" for="ticket_price">Add Photo</label>
+  <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="file" required>
 </div>
 <div class="my-4 mx-6">
   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create</button>
