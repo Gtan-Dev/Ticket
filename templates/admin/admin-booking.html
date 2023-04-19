@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <style>
       .relative:hover .absolute {
   display: block;
@@ -24,23 +25,22 @@
     </style>
 </head>
 <body>
-  <header class="bg-white shadow py-4 fixed right-0 top-0 left-0">
+  <header class="bg-teal-950 shadow py-4 fixed right-0 top-0 left-0">
     <nav class="flex items-center justify-between py-4">
         <div>
-          <a href="/admin" class="mx-4 font-bold text-3xl">Ticket Booking | Admin</a>
+          <a href="/admin" class="mx-4 font-bold text-white text-3xl">Ticket Booking | Admin</a>
         </div>
         <div>
           <div class="relative inline-block mx-4">
             <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-              <span class="mr-1">User</span>
+              <span class="mr-1"><i class="fa fa-user"></i>&nbsp; Admin</span>
               <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
               </svg>
             </button>
             <ul class="absolute hidden text-gray-700 pt-1">
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Profile</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/setting">Settings</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/logout">Logout</a></li>
+              <li><a class="rounded-b logg bg-teal-950 text-white hover:hover:bg-teal-600 hover:text-white py-2 px-4 block whitespace-no-wrap" href="/setting"><i class="fas fa-user-cog"></i>&nbsp;Settings</a></li>
+              <li><a class="rounded-b logg bg-teal-950 text-white hover:hover:bg-teal-600 hover:text-white py-2 px-4 block whitespace-no-wrap" href="/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
             </ul>
           </div>
         </div>
@@ -49,20 +49,17 @@
 <div class="flex mt-12 top-0">
   <!-- Sidebar -->
   <div class="bg-gray-800 text-white h-screen w-64 mt-12 px-4">
-    <h2 class="font-bold text-xl mb-4 mt-10">Dashboard</h2>
+    <h2 class="font-bold text-xl mb-4 mt-10"><i class="fas fa-tachometer-alt dashboard-icon"></i>&nbsp; Dashboard</h2>
     <nav class="mx-4">
       <ul>
         <li>
-          <a href="ad-events" class="block nav-menuss hover:text-gray-400 py-2">Events</a>
+          <a href="/ad-events" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-calendar"></i>&nbsp; Events</a>
         </li>
         <li>
-          <a href="/booking" class="block nav-menuss hover:text-gray-400 py-2">Bookings</a>
+          <a href="/booking" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-ticket-alt"></i>&nbsp; Bookings</a>
         </li>
         <li>
-          <a href="/customers" class="block nav-menuss hover:text-gray-400 py-2">Customers</a>
-        </li>
-        <li>
-          <a href="/setting" class="block nav-menuss hover:text-gray-400 py-2">Settings</a>
+          <a href="/customers" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-user"></i>&nbsp; Customers</a>
         </li>
       </ul>
     </nav>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User | booking</title>
+    <title>User | view</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .relative:hover .absolute {
@@ -41,7 +41,7 @@
               </svg>
             </button>
             <ul class="absolute hidden text-gray-700 pt-1">
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="userprofile">Profile</a></li>
+                  <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userprofile">Profile</a></li>
               <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userlogout">Logout</a></li>
             </ul>
           </div>
@@ -65,31 +65,34 @@
   </div>
   <!-- Content -->
   <div class="flex-1 p-10 mt-10">
-    <div class="flex justify-center items-center">
-         <!-- Event List page -->
-         <div class="container mx-auto mt-12">
-          <div class="my-4 flex justify-between mt-12">
-            <h2 class="text-2xl font-bold text-gray-800">All upcoming events</h2>
-          </div>
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">List of Events</h1>
-            <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {% for event in rows %}
-                <div class="bg-whiteshadow-md rounded-md overflow-hidden">
-                  <div class="p-4 bg-slate-300 mx-4 rounded mb-6 hover:bg-gray-300">
-                    <h2 class="text-lg font-bold mb-2">{{ event[1] }}</h2>
-                    <p class="text-sm text-gray-600"><strong>On:</strong>{{ event[2] }}</p>
-                    <p class="text-sm text-gray-700 mt-2"><strong>At:</strong> {{ event[3] }}</p>
-                    <p class="text-sm text-gray-700"><strong>Location:</strong> {{ event[4] }}</p>
-                    <p class="text-sm text-gray-700"><strong>Cost:</strong> {{ event[5] }}</p>
-                    <div class="flex justify-end">
-                      <p class="text-sm text-gray-700"><a href="/viewEvent/{{ event[0] }}">View event</a></p>
+    <div class="flex justify-center">
+      <div class="flex flex-col justify-center w-full">
+                <div class="bg-slate-200 shadow-md rounded">
+                    <h2 class="text-lg font-bold mb-4 mx-12">Record Details:</h2>
+                    <div class="mb-4 mx-12 flex justify-center">
+                        <p class="text-lg mx-10 text-7xl font-bold">{{ data[1] }}</p>
                     </div>
-                  </div>
+                    <div class="mb-4 mx-12">
+                        <span class="text-sm mb-1">Date:</span>
+                        <span class="text-lg  mx-12 text-7xl font-bold">{{ data[2] }}</span>
+                    </div>
+                    <div class="mb-4 mx-12">
+                        <span class="text-sm mb-1">Time:</span>
+                        <span class="text-lg mx-11 text-7xl font-bold">{{ data[3] }}</span>
+                    </div>
+                    <div class="mb-4 mx-12">
+                        <span class="text-sm mb-1">Location:</span>
+                        <span class="text-lg mx-5 text-7xl font-bold">{{ data[4] }}</span>
+                    </div>
+                    <div class="mb-4 mx-12 mb-8 flex justify-between">
+                        <div class="">
+                              <span class="text-sm mb-1">Price:</span>
+                              <span class="text-lg mx-10 text-green-600 text-7xl font-bold">{{ data[5] }}</span>
+                        </div>
+                        <button class="py-2 px-6 bg-slate-800 hover:bg-slate-600 rounded text-white">book ticket</button>
+                    </div>
                 </div>
-              {% endfor %}
             </div>
-          </div>
         </div>
     </div>
   </div>

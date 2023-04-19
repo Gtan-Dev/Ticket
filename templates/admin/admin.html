@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>AdminDashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <style>
       .relative:hover .absolute {
   display: block;
@@ -24,23 +25,22 @@
     </style>
 </head>
 <body>
-  <header class="bg-white shadow py-4 fixed right-0 top-0 left-0">
+  <header class="bg-teal-950 shadow py-4 fixed right-0 top-0 left-0">
     <nav class="flex items-center justify-between py-4">
         <div>
-          <a href="/admin" class="mx-4 font-bold text-3xl">Ticket Booking | Admin</a>
+          <a href="/admin" class="mx-4 font-bold text-white text-white text-3xl">Ticket Booking System | Admin Panel</a>
         </div>
         <div>
           <div class="relative inline-block mx-4">
             <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-              <span class="mr-1">User</span>
+              <span class="mr-1"><i class="fa fa-user"></i>&nbsp; Admin</span>
               <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
               </svg>
             </button>
             <ul class="absolute hidden text-gray-700 pt-1">
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/profile">Profile</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/setting">Settings</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/logout">Logout</a></li>
+              <li><a class="rounded-b logg bg-teal-950 text-white hover:hover:bg-teal-600 hover:text-white py-2 px-4 block whitespace-no-wrap" href="/setting"><i class="fas fa-user-cog"></i>&nbsp;Settings</a></li>
+              <li><a class="rounded-b logg bg-teal-950 text-white hover:hover:bg-teal-600 hover:text-white py-2 px-4 block whitespace-no-wrap" href="/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
             </ul>
           </div>
         </div>
@@ -49,20 +49,17 @@
 <div class="flex mt-12 top-0">
   <!-- Sidebar -->
   <div class="bg-gray-800 text-white h-screen w-64 mt-12 px-4">
-    <h2 class="font-bold text-xl mb-4 mt-10">Dashboard</h2>
+    <h2 class="font-bold text-xl mb-4 mt-10"><i class="fas fa-tachometer-alt dashboard-icon"></i>&nbsp; Dashboard</h2>
     <nav class="mx-4">
       <ul>
         <li>
-          <a href="/ad-events" class="block nav-menuss hover:text-gray-400 py-2">Events</a>
+          <a href="/ad-events" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-calendar"></i>&nbsp; Events</a>
         </li>
         <li>
-          <a href="/booking" class="block nav-menuss hover:text-gray-400 py-2">Bookings</a>
+          <a href="/booking" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-ticket-alt"></i>&nbsp; Bookings</a>
         </li>
         <li>
-          <a href="/customers" class="block nav-menuss hover:text-gray-400 py-2">Customers</a>
-        </li>
-        <li>
-          <a href="/setting" class="block nav-menuss hover:text-gray-400 py-2">Settings</a>
+          <a href="/customers" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-user"></i>&nbsp; Customers</a>
         </li>
       </ul>
     </nav>
@@ -73,31 +70,31 @@
     <h2 class="font-bold text-2xl mb-4">Event Ticket Booking System</h2>
     <div class="flex flex-wrap -mx-4">
       <div class="w-full lg:w-1/3 px-4 mb-8">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="font-bold text-lg mb-4">Events</h3>
-          <p class="text-gray-700 text-sm">View and manage your events</p>
-          <a href="/ad-events" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Events</a>
+        <div class="bg-slate-600 hover:bg-slate-700 rounded-lg hover:text-white shadow-lg p-8">
+          <h3 class="font-bold text-white text-xl mb-4">Events</h3>
+          <h4 class="text-white text-sm">View and manage your events</h4>
+          <a href="/ad-events" class="block mt-4 text-sm text-green-400 hover:text-green-300">View Events</a>
         </div>
       </div>
       <div class="w-full lg:w-1/3 px-4 mb-8">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="font-bold text-lg mb-4">Tickets</h3>
-          <p class="text-gray-700 text-sm">View and manage your tickets</p>
-          <a href="/ticket" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Tickets</a>
+        <div class="bg-slate-600 hover:bg-slate-700 rounded-lg hover:text-white shadow-lg p-8">
+          <h3 class="font-bold text-white text-lg mb-4">Tickets</h3>
+          <p class="text-white text-sm">View and manage your tickets</p>
+          <a href="/ticket" class="block mt-4 text-sm text-green-400 hover:text-green-300">View Tickets</a>
         </div>
       </div>
       <div class="w-full lg:w-1/3 px-4 mb-8">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="font-bold text-lg mb-4">Bookings</h3>
-          <p class="text-gray-700 text-sm">View and manage your bookings</p>
-          <a href="/booking" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Bookings</a>
+        <div class="bg-slate-600 hover:bg-slate-700 rounded-lg hover:text-white shadow-lg p-8">
+          <h3 class="font-bold text-white text-lg mb-4">Bookings</h3>
+          <p class="text-white text-sm">View and manage your bookings</p>
+          <a href="/booking" class="block mt-4 text-sm text-green-400 hover:text-green-300">View Bookings</a>
         </div>
       </div>
       <div class="w-full lg:w-1/3 px-4 mb-8">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="font-bold text-lg mb-4">Customers</h3>
-          <p class="text-gray-700 text-sm">View and manage your customers</p>
-          <a href="/customers" class="block mt-4 text-sm text-indigo-500 hover:text-indigo-600">View Customers</a>
+        <div class="bg-slate-600 hover:bg-slate-700 rounded-lg hover:text-white shadow-xlg p-8">
+          <h3 class="font-bold text-white text-lg mb-4">Customers</h3>
+          <p class="text-white text-sm">View and manage your customers</p>
+          <a href="/customers" class="block mt-4 text-sm text-green-400 hover:text-green-300">View Customers</a>
         </div>
       </div>
     </div>
