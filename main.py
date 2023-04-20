@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 
 app = Flask(__name__)
+app.secret_key = 'my_secret_key'
 
 
 # MySQL connection configuration
@@ -26,8 +27,8 @@ def admin():
 def home():
     return render_template('home.html')
 
-#Regist new customer route
 
+#Regist new customer route
 @app.route('/regist', methods=['GET', 'POST'])
 def regist():
     username = request.form.get('username')
@@ -45,6 +46,7 @@ def regist():
     conn.commit()
     return render_template('home.html', success = 'User has created successful.')
 
+
 @app.route('/events')
 def events():
     return render_template('events.html')
@@ -57,10 +59,6 @@ def about():
 def eventDetails():
     return render_template('eventDetails.html')
 
-@app.route('/payment')
-def payment():
-    return render_template('payment.html')
-
 @app.route('/setting')
 def setting():
     return (render_template('admin/admin-setting.html'))
@@ -68,6 +66,7 @@ def setting():
 @app.route('/booking')
 def booking():
     return (render_template('admin/admin-booking.html'))
+
 
 #Route to retrieve events from database to admin page
 @app.route('/ad-events')
@@ -77,6 +76,7 @@ def listEvents():
     rows = cursor.fetchall()
     cursor.close()
     return (render_template('admin/ad-events.html', rows=rows))
+
 
 #Route to retrieve customer from database to admin page
 @app.route('/customers')
@@ -104,6 +104,7 @@ def searchevent():
 def purchaseTicket():
     return (render_template('admin/ticket-purchase/purchase-ticket.html'))
 
+
 #route to add an event to database
 @app.route('/addEvent', methods=['GET', 'POST'])
 def store():
@@ -127,7 +128,13 @@ def store():
 
 @app.route('/userDashboard')
 def userDashboard():
-    return (render_template('user/userDashboard.html'))
+    if 'username' in session:
+        # Display the logged-in user on the dashboard
+        return render_template('user/userDashboard.html', username=session['username'])
+    else:
+        # If the user isn't logged in, redirect them to the login page
+        return (render_template('home.html'))
+
 
 @app.route('/allevents')
 def allevents():
@@ -147,12 +154,30 @@ def userbooking():
 
 #retrieve users to user dashboard
 @app.route('/userprofile')
-def userProfile():
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM customer")
-    rows = cursor.fetchall()
-    cursor.close()
-    return (render_template('user/profile.html', rows=rows))
+def dashboard():
+    if 'username' in session:
+        # Retrieve the logged-in user from the session
+        username = session['username']
+
+        # Connect to the MySQL database
+        cnx = mysql.connector.connect(user='root', password='',
+                                      host='localhost', database='ticket_db')
+        cursor = conn.cursor()
+
+        # Execute a query to retrieve the required fields for the logged-in user
+        query = "SELECT username, names, email, phone, address FROM customer WHERE username = %s"
+        cursor.execute(query, (username,))
+        records = cursor.fetchall()
+
+        # Close the cursor and database connection
+        cursor.close()
+        cnx.close()
+
+        # Pass the records to the template
+        return render_template('user/profile.html', username=username, records=records)
+    else:
+        # If the user isn't logged in, redirect them to the login page
+        return redirect('/')
 
 #view single record
 @app.route('/viewEvent/<event_id>')
@@ -163,9 +188,50 @@ def viewEvent(event_id):
     cursor.close()
     return (render_template('user/viewEvent.html', data=data))
 
-@app.route('//userlogout')
+#view single customers
+@app.route('/viewCustomer/<customer_id>')
+def viewCustomer(customer_id):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM customer WHERE customer_id = %s", (customer_id,))
+    data = cursor.fetchall()[0]
+    cursor.close()
+    return (render_template('user/viewEvent.html', data=data))
+
+
+#user login
+# Define the login route
+@app.route('/userLogin', methods=['GET', 'POST'])
+def userLogin():
+    if request.method == 'POST':
+        # Retrieve username and password from the form
+        username = request.form['username']
+        password = request.form['password']
+
+        # Retrieve user information from the database using the username
+        mycursor = conn.cursor()
+        sql = "SELECT * FROM customer WHERE username = %s"
+        val = (username,)
+        mycursor.execute(sql, val)
+        user = mycursor.fetchone()
+
+        # Compare the retrieved password with the password entered by the user
+        if user and password == user[6]:
+            # Log in the user and redirect them to the dashboard
+            session['username'] = username
+            return redirect('/userDashboard')
+        else:
+            # If the passwords don't match, show an error message
+            return render_template('home.html', error='Invalid username or password')
+
+    return render_template('home.html')
+
+
+
+#user logout
+@app.route('/userLogout')
 def userLogout():
-    return (render_template('user/userlogout.html'))
+    session.clear()
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)

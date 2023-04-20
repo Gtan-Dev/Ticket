@@ -35,14 +35,14 @@
           <a class="text-white mx-2" href="/userDashboard">Home</a>
           <div class="relative inline-block mx-4">
             <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-              <span class="mr-1">User</span>
+              <span class="mr-1">{{ username }}</span>
               <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
               </svg>
             </button>
             <ul class="absolute hidden text-gray-700 pt-1">
               <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="userprofile">Profile</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userlogout">Logout</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userLogout">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -65,38 +65,34 @@
   </div>
   <!-- Content -->
   <div class="flex-1 p-10 mt-10">
-    <div class="flex justify-center items-center">
-      <div class="max-w-3xl mx-auto py-6">
-        <div class="flex items-center">
-          <img src="https://via.placeholder.com/100" alt="Profile picture" class="rounded-full w-20 h-20 mr-6">
-          <div>
-            {% for x in rows %}
-            <h1 class="text-3xl font-bold">{{ x[1] }}</h1>
-            <p class="text-gray-600">{{ x[2] }}</p>
-          </div>
-        </div>
-        
-        <div class="mt-6">
-          <h2 class="text-xl font-bold mb-4">Personal Info</h2>
-          <ul class="list-disc pl-6">
-            <li>Phone: {{ x[3] }}</li>
-            <li>Address: 123 Main St, Anytown, USA</li>
-            <li>Education: Bachelor's degree in Computer Science</li>
-            <li>Work: Software Engineer at XYZ Company</li>
-            <li>Interests: Hiking, playing guitar, watching movies</li>
-          </ul>
-        </div>
-        {% endfor %}
-        <div class="mt-6">
-          <h2 class="text-xl font-bold mb-4">Social Media</h2>
-          <ul class="list-disc pl-6">
-            <li><a href="https://twitter.com/johndoe" target="_blank">Twitter</a></li>
-            <li><a href="https://www.linkedin.com/in/johndoe/" target="_blank">LinkedIn</a></li>
-            <li><a href="https://github.com/johndoe" target="_blank">GitHub</a></li>
-          </ul>
+    <div class="max-w-6xl mx-auto py-12 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold mb-4">User Profile</h1>
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+          <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Username</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ username }}</dd>
+            </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Name</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ records[1] }}</dd>
+            </div>
+            <div class="sm:col-span-2">
+              <dt class="text-sm font-medium text-gray-500">Email</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ records[2] }}</dd>
+            </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Phone</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ records[3] }}</dd>
+            </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Address</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ records[4] }}</dd>
+            </div>
+          </dl>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

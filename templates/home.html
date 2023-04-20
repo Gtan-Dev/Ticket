@@ -17,18 +17,18 @@
       Processing...
     </button> -->
     
-    <header class="bg-white shadow-lg py-4 sticky top-0">
+    <header class="bg-teal-700 shadow-lg py-4 sticky top-0">
       <div class="container mx-auto px-4">
         <nav class="flex items-center justify-between py-4">
           <div>
-            <a href="/" class="font-bold text-4xl text-gray-800">Online Ticket Booking System</a>
+            <a href="/" class="font-bold text-4xl text-white">Online Ticket Booking System</a>
           </div>
           <div>
-            <a href="/" class="text-gray-600 hover:text-gray-800 mx-3">Home</a>
-            <a href="#about" class="scroll text-gray-600 hover:text-gray-800 mx-3">About</a>
-            <a href="#contact" class="scroll text-gray-600 hover:text-gray-800 mx-3">Contact</a>
-            <a href="#login" class="scroll text-gray-600 hover:text-gray-800 mx-3">Login</a>
-            <a href="#regist" class="scroll text-gray-600 hover:text-gray-800 mx-3">Create Account</a>
+            <a href="/" class="text-white hover:text-cyan-200 mx-3">Home</a>
+            <a href="#about" class="scroll text-white hover:text-cyan-200 mx-3">About</a>
+            <a href="#contact" class="scroll text-white hover:text-cyan-200 mx-3">Contact</a>
+            <a href="#login" class="scroll text-white hover:text-cyan-200 mx-3">Login</a>
+            <a href="#regist" class="scroll text-white hover:text-cyan-200 mx-3">Create Account</a>
           </div>
         </nav>
       </div>
@@ -44,7 +44,6 @@
           </svg>
         </div>
         <div>
-          <p class="font-bold">Success!</p>
           <p class="text-sm">{{ success }}</p>
         </div>
       </div>
@@ -69,7 +68,7 @@
               <h2 class="text-xl font-bold mb-4 text-gray-800">Book tickets for your favorite events</h2>
               <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
               <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
-              <a href="#login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Get Started</a>
+              <a href="#login" class="bg-teal-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">Get Started</a>
             </div>
             <div class="w-full md:w-1/2 px-4">
               <img src="static/img/img.jpg" alt="Event Image">
@@ -86,7 +85,7 @@
         <div class="mx-4 flex justify-center">
           <h1 class="text-3xl">Login to get started</h1> 
         </div>
-        <form action="/login" method="post" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" style="width: 450px; height: 340; margin-left: 300px; margin-top: 150px;">
+        <form action="/userLogin" method="post" class="bg-slate-200 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" style="width: 450px; height: 340; margin-left: 300px; margin-top: 150px;">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
               Username
