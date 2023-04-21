@@ -53,13 +53,13 @@
     <nav class="mx-4">
       <ul>
         <li>
-          <a href="/ad-events" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-calendar"></i>&nbsp; Events</a>
+          <a href="/ad-events" class="block nav-menuss hover:bg-teal-600 py-2 px-5 rounded"><i class="fas fa-calendar"></i>&nbsp; Events</a>
         </li>
         <li>
-          <a href="/booking" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-ticket-alt"></i>&nbsp; Bookings</a>
+          <a href="/booking" class="block nav-menuss hover:bg-teal-600 py-2 px-5 rounded"><i class="fas fa-ticket-alt"></i>&nbsp; Bookings</a>
         </li>
         <li>
-          <a href="/customers" class="block nav-menuss hover:bg-teal-600 py-2"><i class="fas fa-user"></i>&nbsp; Customers</a>
+          <a href="/customers" class="block nav-menuss hover:bg-teal-600 py-2 px-5 rounded"><i class="fas fa-user"></i>&nbsp; Customers</a>
         </li>
       </ul>
     </nav>
@@ -76,24 +76,24 @@
     <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="" method="POST">
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="name">Event Name</label>
-        <input value="{{ row[1] }}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" required>
+        <input value="{{data[1]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" required>
       </div>
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="date">Date</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" name="date" required>
+        <input value="{{data[2]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" name="date" required>
       </div>
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="time">Time</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="time" name="time" required>
+        <input value="{{data[3]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="time" name="time" required>
       </div>
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="location">Location</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="location" required>
+        <input value="{{data[4]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="location" required>
       </div>
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="ticket_price">
           Ticket Price</label>
-  <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
+  <input value="{{data[5]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
   </div>
   <div class="my-4 mx-6">
   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>

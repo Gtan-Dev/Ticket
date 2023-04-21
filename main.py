@@ -76,7 +76,13 @@ def listEvents():
     rows = cursor.fetchall()
     cursor.close()
     return (render_template('admin/ad-events.html', rows=rows))
-
+@app.route('/editevent/id/<id>')
+def editEvent(id):
+    # id = int(id)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM `events` WHERE `event_id`="+id+"")
+    data = cursor.fetchall()
+    return render_template('admin/editevent.html',data=data[0])
 
 #Route to retrieve customer from database to admin page
 @app.route('/customers')
@@ -134,6 +140,7 @@ def userDashboard():
     else:
         # If the user isn't logged in, redirect them to the login page
         return (render_template('home.html'))
+    
 
 
 @app.route('/allevents')
@@ -158,20 +165,12 @@ def dashboard():
     if 'username' in session:
         # Retrieve the logged-in user from the session
         username = session['username']
-
-        # Connect to the MySQL database
-        cnx = mysql.connector.connect(user='root', password='',
-                                      host='localhost', database='ticket_db')
         cursor = conn.cursor()
-
-        # Execute a query to retrieve the required fields for the logged-in user
         query = "SELECT username, names, email, phone, address FROM customer WHERE username = %s"
         cursor.execute(query, (username,))
         records = cursor.fetchall()
-
-        # Close the cursor and database connection
         cursor.close()
-        cnx.close()
+        conn.close()
 
         # Pass the records to the template
         return render_template('user/profile.html', username=username, records=records)
