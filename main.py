@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
+import os
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
+UPLOAD_FOLDER = 'static/uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 # MySQL connection configuration
@@ -102,6 +105,10 @@ def createEvent():
 def editevent():
     return (render_template('admin/editevent.html'))
 
+@app.route('/updateEvent')
+def updateEvent():
+    return (render_template('admin/ad-events.html'))
+
 @app.route('/searchevent')
 def searchevent():
     return (render_template('admin/ticket-purchase/searchevent.html'))
@@ -120,15 +127,20 @@ def store():
     location = request.form.get('location')
     ticket_price = request.form.get('ticket_price')
 
+    file = request.files['image']
+    filename = file.filename
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
      # Create a cursor object
     cursor = conn.cursor()
 
-    sql = "INSERT INTO `events` (`name`, `date`, `time`, `location`, `ticket_price`) VALUES(%s, %s, %s, %s, %s)"
-    value = (name, date, time, location, ticket_price)
+    sql = "INSERT INTO `events` (`name`, `date`, `time`, `location`, `ticket_price`, `image`) VALUES(%s, %s, %s, %s, %s, %s)"
+    value = (name, date, time, location, ticket_price, filename)
     cursor.execute(sql, value)
     conn.commit()
     return render_template('admin/createevent.html', success = 'Event created successfully !')
- 
+
+
 
  #Users routes
 
@@ -224,13 +236,30 @@ def userLogin():
 
     return render_template('home.html')
 
-
-
 #user logout
 @app.route('/userLogout')
 def userLogout():
     session.clear()
     return redirect('/')
+
+
+
+
+
+
+# @app.route('/upload', methods=['POST'])
+# def upload():
+#     file = request.files['file']
+#     filename = file.filename
+#     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#     return redirect(url_for('uploaded_file', filename=filename))
+
+# @app.route('/uploads/<filename>')
+# def uploaded_file(filename):
+#     return render_template('home.html', filename=filename)
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
