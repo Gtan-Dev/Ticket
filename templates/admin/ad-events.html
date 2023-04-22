@@ -71,12 +71,12 @@
       <div class="container mx-auto mt-12">
         <div class="my-4 flex justify-between mt-12">
           <h2 class="text-2xl font-bold text-gray-800">List of all available events</h2>
-          <a href="/createevent" class="bg-teal-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Create New Event</a>
+          <a href="/createevent" class="text-teal-500 font-bold py-2 px-4">Create New Event</a>
         </div>
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <table class="w-full table-auto">
+          <table class="w-full table-auto bg-slate-400">
             <thead>
-              <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+              <tr class="bg-teal-800 text-white uppercase text-sm leading-normal">
                 <th class="py-3 px-6 text-left">Event Name</th>
                 <th class="py-3 px-6 text-left">Date</th>
                 <th class="py-3 px-6 text-left">Time</th>
@@ -87,8 +87,8 @@
             </thead>
             <tbody>
               {% for row in rows %}
-                <tr class="border-b border-gray-200 hover:bg-gray-100">
-                  <td class="py-3 px-6 text-left">{{ row[1] }}</td>
+                <tr class="border-gray-200 hover:bg-slate-300">
+                  <td class="py-3 px-6 text-left font-bold">{{ row[1] }}</td>
                   <td class="py-3 px-6 text-left">{{ row[2] }}</td>
                   <td class="py-3 px-6 text-left">{{ row[3] }}</td>
                   <td class="py-3 px-6 text-left">{{ row[4] }}</td>

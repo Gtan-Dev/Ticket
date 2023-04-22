@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{ url_for('static', filename='js/smooth-scroll.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   </head>
-  <body>
+  <body class="bg-slate-900">
     <!--Loader-->
 
     <!-- <button type="button" class="bg-indigo-500 ..." disabled>
@@ -17,14 +17,14 @@
       Processing...
     </button> -->
     
-    <header class="bg-teal-700 shadow-lg py-4 sticky top-0">
+    <header class="bg-slate-700 shadow-lg py-4 sticky top-0">
       <div class="container mx-auto px-4">
         <nav class="flex items-center justify-between py-4">
           <div>
             <a href="/" class="font-bold text-4xl text-white">Online Ticket Booking System</a>
           </div>
           <div>
-            <a href="/" class="text-white hover:text-cyan-200 mx-3">Home</a>
+            <a href="/" class="text-white hover:text-teal-300 mx-3">Home</a>
             <a href="#about" class="scroll text-white hover:text-cyan-200 mx-3">About</a>
             <a href="#contact" class="scroll text-white hover:text-cyan-200 mx-3">Contact</a>
             <a href="#login" class="scroll text-white hover:text-cyan-200 mx-3">Login</a>
@@ -34,10 +34,10 @@
       </div>
     </header>
     
-    <div class="bg-green-100 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md alert" role="alert">
+    <div class="bg-slate-100 border-t-4 rounded-b text-green-900 px-4 py-3 shadow-md alert" role="alert">
       <div class="flex">
         <div class="py-1 pr-2">
-          <svg class="fill-current h-6 w-6 text-green-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <svg class="fill-current h-6 w-6 text-slate-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 110-12 6 6 0 010 12z"/>
             <path d="M10 11a1 1 0 00-1 1v3a1 1 0 002 0v-3a1 1 0 00-1-1z"/>
             <circle cx="10" cy="8" r="1" />
@@ -61,14 +61,14 @@
       }, 6000); // 5000 milliseconds or 5 seconds
     </script>
     <main>
-      <section class="bg-gray-200 h-screen flex items-center py-20">
+      <section class="bg-slate-800 h-screen flex items-center py-20">
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
-              <h2 class="text-xl font-bold mb-4 text-gray-800">Book tickets for your favorite events</h2>
-              <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
-              <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
-              <a href="#login" class="bg-teal-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">Get Started</a>
+            <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0 text-white">
+              <h2 class="text-xl font-bold mb-4">Book tickets for your favorite events</h2>
+              <p class="leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
+              <p class="leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
+              <a href="#login" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">Get Started</a>
             </div>
             <div class="w-full md:w-1/2 px-4">
               <img src="static/img/img.jpg" alt="Event Image">
@@ -79,44 +79,59 @@
     </main>
 
     <!-- login form -->
-
-    <div id="login" class="flex flex-col md:flex-row items-center justify-center h-screen">
-      <div class="w-full md:w-1/2 p-4">
-        <div class="mx-4 flex justify-center">
-          <h1 class="text-3xl">Login to get started</h1> 
-        </div>
-        <form action="/userLogin" method="post" class="bg-slate-200 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" style="width: 450px; height: 340; margin-left: 300px; margin-top: 150px;">
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-              Username
-            </label>
-            <input class="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="username" type="text" placeholder="Enter your username">
-          </div>
-          <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-              Password
-            </label>
-            <input class="appearance-none border rounded w-full py-3 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Enter your password">
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-              Forgot Password?
-            </a>
-          </div>
-          <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Sign In
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#regist">
-              Don't have account
-            </a>
-          </div>
-        </form>
+    <div id="login" class="f items-center justify-between h-screen">
+      <div class="flex justify-center" style="margin-top: 40px;">
       </div>
-      <div class="w-full md:w-1/2 p-8">
-        <img src="static/img/img.jpg" alt="Event Image">
+      <div class="flex flex-col md:flex-row items-center justify-between h-screen">
+        <div class="w-full max-w-md mx-12" style="opacity: none;">
+          <div class="bg-gray-800 rounded-lg shadow-lg p-8" style="width: 550px;">
+            <h1 class="text-xl font-bold mb-8 text-center text-gray-100">Login</h1>
+            <form action="/userLogin" method="post">
+                <!-- Username -->
+                <div class="relative mt-4">
+                  <i class="fas fa-lock absolute left-3 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                    style="width: 480px;"
+                  />
+                </div>
+                <!-- Password -->
+                <div class="relative mt-4">
+                  <i class="fas fa-lock absolute left-3 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                    style="width: 480px;"
+                  />
+                </div>
+                <div class="flex justify-between mt-2" style="margin-right: 6px;">
+                  <p class="text-white">Remember me <input type="checkbox" name="check" id=""></p>
+                  <a href="#" class="text-teal-400">Forgot Password</a>
+                </div>
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  class="bg-teal-700 hover:bg-teal-600 text-gray-100 py-2 px-4 rounded mt-8 hover:bg-gray-600 w-full"
+                  >
+                    Sign In
+                </button>
+                <div class="flex justify-center mt-2">
+                  <a href="#regist" class="text-teal-400">Create New Account</a>
+                </div>
+              </form>
+            </div>
+         </div>
+        <div class="w-full md:w-1/2 p-8 mt-4">
+          <img src="static/img/img.jpg" alt="Event Image">
+        </div>
       </div>
     </div>
-
-  
+ 
     <!-- Registration form -->
 
     
@@ -124,104 +139,103 @@
     <div class="flex justify-center" style="margin-top: 40px;">
     </div>
     <div class="flex flex-col md:flex-row items-center justify-between h-screen">
-      <div class="w-full md:w-1/2 p-8 bg-white mt-4 p-8 shadow-lg rounded mx-4" style="width: 500px; margin-left: 90px;">
-        <p class="text-lg">Customer creation fields</p> 
-            <div class="flex justify-end py-4">
-                <p class="text-blue-500 text-2xl">Regist new customer</p>
-            </div> 
-        <form method="post" action="/regist">
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="username">
-              Username
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              name="username"
-              placeholder="Username"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="username">
-              Names
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              name="name"
-              placeholder="Your names"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-              Email
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="email"
-              name="email"
-              placeholder="Email"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-              Phone
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="number"
-              name="phone"
-              placeholder="Phone"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-              Address
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              name="address"
-              placeholder="Address"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="password">
-              Password
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="confirm-password">
-              Confirm Password
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="password"
-              name="confirm-password"
-              placeholder="Confirm Password"
-            />
-          </div>
-          <div class="flex items-center justify-between">
+      <div class="w-full max-w-md mx-12" style="opacity: none;">
+        <div class="bg-gray-800 rounded-lg shadow-lg p-8" style="width: 550px;">
+          <h1 class="text-xl font-bold mb-8 text-center text-gray-100">Create New Account</h1>
+          <form action="/regist" method="post">
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Username -->
+              <div class="relative">
+                <i class="fas fa-user absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+    
+              <!-- Names -->
+              <div class="relative">
+                <i class="fas fa-user absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Names"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+    
+              <!-- Email -->
+              <div class="relative">
+                <i class="fas fa-envelope absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+    
+              <!-- Phone -->
+              <div class="relative">
+                <i class="fas fa-phone absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+    
+              <!-- Address -->
+              <div class="relative">
+                <i class="fas fa-map-marker-alt absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+    
+              <!-- Password -->
+              <div class="relative">
+                <i class="fas fa-lock absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                />
+              </div>
+            </div>
+              <!-- Confirm Password -->
+              <div class="relative mt-4">
+                <i class="fas fa-lock absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
+                <input
+                  type="password"
+                  name="confirm-password"
+                  placeholder="Confirm Password"
+                  class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
+                  style="width: 480px;"
+                />
+              </div>
+            <!-- Submit Button -->
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
-            >
-              Next
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#login">
-              I have account
-            </a>
+              class="bg-teal-700 hover:bg-teal-600 text-gray-100 py-2 px-4 rounded mt-8 hover:bg-gray-600 w-full"
+              >
+                Submit
+              </button>
+              <div class="flex justify-center mt-2">
+                <a href="#login" class="text-teal-400">Sign In with your Account</a>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+       </div>
       <div class="w-full md:w-1/2 p-8 mt-4">
-        <img src="static/img/img.jpg" alt="Event Image" class="opacity-60">
+        <img src="static/img/img.jpg" alt="Event Image">
         </div>
     </div>
   </div>
@@ -230,18 +244,16 @@
 <!-- About page -->
 
 <main id="about">
-  <section class="bg-gray-100 h-screen py-20">
+  <section class="bg-slate-800 h-screen py-20">
     <div class="container mx-auto px-4">
-      <h2 class="text-2xl font-bold mb-4 py-10 text-gray-800">About Online book ticket</h2>
+      <h2 class="text-2xl font-bold mb-4 py-10 text-white">About Online book ticket</h2>
       <div class="flex flex-wrap -mx-4">
         <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
           <img src="static/img/img.jpg" alt="Event Image">
         </div>
-        <div class="w-full md:w-1/2 px-4">
+        <div class="w-full md:w-1/2 px-4 text-white">
           <p class="mb-4">We are a team of dedicated developers who have created an online ticket booking system to provide a convenient and efficient way for customers to purchase tickets for various events, activities, and services over the internet. Our platform offers a wide range of options, including events, shows, concerts, movies, and transportation services, and our payment system is secure and easy to use.</p>
           <p class="mb-4">Our mission is to make ticket booking as simple and hassle-free as possible, saving customers time and effort while also increasing revenue for event organizers and transportation companies.</p>
-          <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
-          <p class="text-gray-700 leading-loose mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel magna at nunc pharetra ullamcorper. Nam consectetur, sapien sit amet lacinia eleifend, velit velit dignissim justo, non faucibus nibh magna non odio.</p>
         </div>
       </div>
     </div>
