@@ -73,7 +73,8 @@
     <div class="my-4">
       <h2 class="text-2xl font-bold text-gray-800">Modify event</h2>
     </div>
-    <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="/update" method="POST">
+    <form class="bg-white rounded-lg shadow-lg overflow-hidden" action="/modifyEvent" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="my_id" value="{{data[0]}}">
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="name">Event Name</label>
         <input value="{{data[1]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" required>
@@ -93,8 +94,14 @@
       <div class="my-4 mx-6">
         <label class="block font-bold text-gray-800 mb-2" for="ticket_price">
           Ticket Price</label>
-  <input value="{{data[5]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
-  </div>
+        <input value="{{data[5]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
+      </div>
+      <div class="my-4 mx-6">
+        <label class="block font-bold text-gray-800 mb-2" for="ticket_price">
+          Update image</label>
+        <input value="{{data[6]}}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="image" required>
+      </div>
+    
   <div class="my-4 mx-6">
   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
   </div>

@@ -141,9 +141,38 @@ def store():
     return render_template('admin/createevent.html', success = 'Event created successfully !')
 
 
+@app.route('/modifyEvent', methods=['POST'])
+def modifyEvent():
+    # get the data from the request
+    user_id = request.form.get('my_id')
+    name = request.form.get('name')
+    date = request.form.get('date')
+    time = request.form.get('time')
+    location = request.form.get('location')
+    ticket_price = request.form.get('ticket_price')
+
+    file = request.files['image']
+    filename = file.filename
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    cur = conn.cursor()
+    cur.execute("UPDATE events SET name = %s, date = %s, time = %s, location = %s, ticket_price = %s, image = %s WHERE event_id = %s", (name, date, time, location, ticket_price, filename, user_id))
+    conn.commit()
+    conn.close()
+    return render_template('admin/ad-events.html', msg = 'Event updated successfully')
+
+@app.route('/deleteEvent', methods=['POST'])
+def delete_data(): 
+    cursor = conn.cursor()
+    data = request.json
+    id = data['id']
+    # execute delete statement here
+    query = "DELETE FROM events WHERE event_id=%s"
+    cursor.execute(query, (id,))
+    conn.commit()
+
+    return 'Data deleted successfully'
 
  #Users routes
-
 @app.route('/userDashboard')
 def userDashboard():
     if 'username' in session:
@@ -154,18 +183,15 @@ def userDashboard():
         return (render_template('home.html'))
     
 
-
+#retrieve events to user's page
 @app.route('/allevents')
 def allevents():
-    # Create a cursor object to execute MySQL queries
     cursor = conn.cursor()
-    # Execute the query to select all users from the users table
     cursor.execute("SELECT * FROM events")
-    # Fetch all rows of the query result
     rows = cursor.fetchall()
-    # Close the cursor
     cursor.close()
     return (render_template('user/allevents.html', rows=rows ))
+
 
 @app.route('/userbooking')
 def userbooking():
@@ -187,8 +213,8 @@ def dashboard():
         # Pass the records to the template
         return render_template('user/profile.html', username=username, records=records)
     else:
-        # If the user isn't logged in, redirect them to the login page
         return redirect('/')
+
 
 #view single record
 @app.route('/viewEvent/<event_id>')
@@ -198,6 +224,7 @@ def viewEvent(event_id):
     data = cursor.fetchall()[0]
     cursor.close()
     return (render_template('user/viewEvent.html', data=data))
+
 
 #view single customers
 @app.route('/viewCustomer/<customer_id>')
@@ -209,12 +236,10 @@ def viewCustomer(customer_id):
     return (render_template('user/viewEvent.html', data=data))
 
 
-#user login
 # Define the login route
 @app.route('/userLogin', methods=['GET', 'POST'])
 def userLogin():
     if request.method == 'POST':
-        # Retrieve username and password from the form
         username = request.form['username']
         password = request.form['password']
 
@@ -227,11 +252,9 @@ def userLogin():
 
         # Compare the retrieved password with the password entered by the user
         if user and password == user[6]:
-            # Log in the user and redirect them to the dashboard
             session['username'] = username
             return redirect('/userDashboard')
         else:
-            # If the passwords don't match, show an error message
             return render_template('home.html', error='Invalid username or password')
 
     return render_template('home.html')
@@ -241,24 +264,6 @@ def userLogin():
 def userLogout():
     session.clear()
     return redirect('/')
-
-
-
-
-
-
-# @app.route('/upload', methods=['POST'])
-# def upload():
-#     file = request.files['file']
-#     filename = file.filename
-#     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#     return redirect(url_for('uploaded_file', filename=filename))
-
-# @app.route('/uploads/<filename>')
-# def uploaded_file(filename):
-#     return render_template('home.html', filename=filename)
-
-
 
 
 if __name__ == "__main__":
