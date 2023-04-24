@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User | booking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/static/js/tailwind.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <style>
       .relative:hover .absolute {
@@ -80,7 +80,7 @@
               {% for event in rows %}
                 <div class="bg-whiteshadow-md rounded-md overflow-hidden">
                   <div class="p-4 bg-slate-300 mx-4 rounded mb-6 hover:bg-gray-300">
-                    <img src="{{ url_for('static', filename='uploads/'+event[6]) }}">
+                    <img src="{{ url_for('static', filename='uploads/'+event[7]) }}">
                     <h2 class="text-lg font-bold mb-2">{{ event[1] }}</h2>
                     <p class="text-sm text-gray-600"><strong>On:</strong>{{ event[2] }}</p>
                     <p class="text-sm text-gray-700 mt-2"><strong>At:</strong> {{ event[3] }}</p>

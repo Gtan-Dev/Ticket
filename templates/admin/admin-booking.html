@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Admin | Bookings</title>
+    <script src="static/js/tailwind.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <style>
       .relative:hover .absolute {
@@ -67,7 +67,32 @@
   <!-- Content -->
   <div class="flex-1 p-10 mt-10">
     <div class="flex justify-center items-center">
-      <h1 class="text-3xl">Booking</h1>
+      <!-- Event List page -->
+      <div class="container mx-auto mt-12">
+        <div class="my-4 flex justify-between mt-12">
+          <h2 class="text-2xl font-bold text-gray-800">List of All bookings</h2>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <table class="w-full table-auto">
+            <thead>
+              <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-left">CustomerID</th>
+                <th class="py-3 px-6 text-left">EventID</th>
+                <th class="py-3 px-6 text-left">Date of Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in rows %}
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                  <td class="py-3 px-6 text-left">{{ row[1] }}</td>
+                  <td class="py-3 px-6 text-left">{{ row[2] }}</td>
+                  <td class="py-3 px-6 text-left">{{ row[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

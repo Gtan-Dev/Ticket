@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User | view</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/static/js/tailwind.js"></script>
     <style>
       .relative:hover .absolute {
   display: block;
@@ -42,7 +42,7 @@
             </button>
             <ul class="absolute hidden text-gray-700 pt-1">
                   <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userprofile">Profile</a></li>
-              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userlogout">Logout</a></li>
+              <li><a class="rounded-b logg bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/userLogout">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -68,7 +68,7 @@
     <div class="flex justify-center">
       <div class="flex flex-col justify-center w-full">
                 <div class="bg-slate-200 shadow-md rounded">
-                    <h2 class="text-lg font-bold mb-4 mx-12">Record Details:</h2>
+                    <h2 class="text-lg font-bold mb-4 mx-12">Event Details:</h2>
                     <div class="mb-4 mx-12 flex justify-center">
                         <p class="text-lg mx-10 text-7xl font-bold">{{ data[1] }}</p>
                     </div>
@@ -84,12 +84,16 @@
                         <span class="text-sm mb-1">Location:</span>
                         <span class="text-lg mx-5 text-7xl font-bold">{{ data[4] }}</span>
                     </div>
+                    <div class="mb-4 mx-12">
+                        <span class="text-sm mb-1">Number of Ticket:</span>
+                        <span class="text-lg mx-5 text-7xl font-bold">{{ data[6] }}</span>
+                    </div>
                     <div class="mb-4 mx-12 mb-8 flex justify-between">
                         <div class="">
                               <span class="text-sm mb-1">Price:</span>
                               <span class="text-lg mx-10 text-green-600 text-7xl font-bold">{{ data[5] }}</span>
                         </div>
-                        <button class="py-2 px-6 bg-slate-800 hover:bg-slate-600 rounded text-white">book ticket</button>
+                        <a href="/bookevent/{{ data[0] }}" class="py-2 px-6 bg-slate-800 hover:bg-slate-600 rounded text-white">book ticket</a>
                     </div>
                 </div>
             </div>

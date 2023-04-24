@@ -68,7 +68,11 @@ def setting():
 
 @app.route('/booking')
 def booking():
-    return (render_template('admin/admin-booking.html'))
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM books")
+    rows = cursor.fetchall()
+    cursor.close()
+    return (render_template('admin/admin-booking.html', rows=rows))
 
 
 #Route to retrieve events from database to admin page
@@ -79,6 +83,7 @@ def listEvents():
     rows = cursor.fetchall()
     cursor.close()
     return (render_template('admin/ad-events.html', rows=rows))
+
 @app.route('/editevent/id/<id>')
 def editEvent(id):
     # id = int(id)
@@ -264,6 +269,32 @@ def userLogin():
 def userLogout():
     session.clear()
     return redirect('/')
+
+
+
+# book event routes
+@app.route('/bookevent/<int:id>')
+def book(id):
+    username = session['username']
+    sql = "SELECT * FROM `customer` WHERE `username` = %s limit 1"
+    cursor = conn.cursor()
+    cursor.execute(sql,(username,))
+    user = cursor.fetchone()
+    userId = user[0]
+
+    # save event bookings
+    sql = "INSERT INTO `books`(`customer_id`, `event_id`) VALUES (%s,%s)"
+    cursor.execute(sql,(userId,id))
+    conn.commit()
+
+    # updated event and remove bookings
+    sql = "UPDATE `events` SET `number` = `number`-1 WHERE `event_id` = %s"
+    cursor.execute(sql,(id,))
+    conn.commit()
+    cursor.close()
+    return redirect('/allevents')
+
+
 
 
 if __name__ == "__main__":
