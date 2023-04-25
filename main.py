@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template,flash, request, redirect, url_for, session
 import mysql.connector
 import os
 
@@ -41,8 +41,32 @@ def regist():
     address = request.form.get('address')
     password = request.form.get('password')
     confirm_password = request.form.get('confirm-password')
-    cursor = conn.cursor()
 
+    if not username:
+        return render_template('home.html', error = 'Please enter username')
+    elif not names:
+        return render_template('home.html', error = 'Please enter names')
+    elif not phone:
+        return render_template('home.html', error = 'Please enter phone')
+    elif not email:
+        return render_template('home.html', error = 'Please enter email')
+    elif not address:
+        return render_template('home.html', error = 'Please enter address')
+    elif not password:
+        return render_template('home.html', error = 'Please enter passowrd')
+    elif not confirm_password:
+        return render_template('home.html', error = 'Please add confirmation password')
+    
+    if len(password) < 4 or len(password) >= 10:
+        return render_template('home.html', error = 'Password must be between 4 and 8 characters long')
+    
+    if len(phone) < 10:
+        return render_template('home.html', error = 'Phone number must be at least 10 digits long')
+
+    if password != confirm_password:
+        return render_template('home.html', error = 'Password do not match')
+    
+    cursor = conn.cursor()
     sql = "INSERT INTO `customer` (`username`, `names`, `email`, `phone`, `address`, `password`, `confirm_password`) VALUES(%s, %s, %s, %s, %s, %s, %s)"
     value = (username, names, email, phone, address, password, confirm_password)
     cursor.execute(sql, value)
@@ -69,9 +93,9 @@ def setting():
 @app.route('/booking')
 def booking():
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM books")
+    cursor.execute("SELECT name,names,events.date FROM books, events,customer WHERE books.event_id=events.event_id AND books.customer_id=customer.customer_id")
     rows = cursor.fetchall()
-    cursor.close()
+    
     return (render_template('admin/admin-booking.html', rows=rows))
 
 
@@ -81,7 +105,7 @@ def listEvents():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM events")
     rows = cursor.fetchall()
-    cursor.close()
+    
     return (render_template('admin/ad-events.html', rows=rows))
 
 @app.route('/editevent/id/<id>')
@@ -98,7 +122,7 @@ def retrieveCustomer():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM customer")
     rows = cursor.fetchall()
-    cursor.close()
+    
     return (render_template('admin/admin-customers.html', rows=rows))
 
 
@@ -131,7 +155,8 @@ def store():
     time = request.form.get('time')
     location = request.form.get('location')
     ticket_price = request.form.get('ticket_price')
-
+    description = request.form.get('desc')
+    number = request.form.get('ticket')
     file = request.files['image']
     filename = file.filename
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -139,8 +164,8 @@ def store():
      # Create a cursor object
     cursor = conn.cursor()
 
-    sql = "INSERT INTO `events` (`name`, `date`, `time`, `location`, `ticket_price`, `image`) VALUES(%s, %s, %s, %s, %s, %s)"
-    value = (name, date, time, location, ticket_price, filename)
+    sql = "INSERT INTO `events` (`name`, `date`, `time`, `location`, `ticket_price`, `description`, `number`, `image`) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)"
+    value = (name, date, time, location, ticket_price, description, number, filename)
     cursor.execute(sql, value)
     conn.commit()
     return render_template('admin/createevent.html', success = 'Event created successfully !')
@@ -162,20 +187,18 @@ def modifyEvent():
     cur = conn.cursor()
     cur.execute("UPDATE events SET name = %s, date = %s, time = %s, location = %s, ticket_price = %s, image = %s WHERE event_id = %s", (name, date, time, location, ticket_price, filename, user_id))
     conn.commit()
-    conn.close()
+    
     return render_template('admin/ad-events.html', msg = 'Event updated successfully')
 
-@app.route('/deleteEvent', methods=['POST'])
-def delete_data(): 
-    cursor = conn.cursor()
-    data = request.json
-    id = data['id']
-    # execute delete statement here
-    query = "DELETE FROM events WHERE event_id=%s"
-    cursor.execute(query, (id,))
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    mycursor = conn.cursor()
+    sql = "DELETE FROM events WHERE event_id = %s"
+    val = (id,)
+    mycursor.execute(sql, val)
     conn.commit()
+    return render_template('admin/ad-events.html', success = 'Event cancelled successful !')
 
-    return 'Data deleted successfully'
 
  #Users routes
 @app.route('/userDashboard')
@@ -194,13 +217,23 @@ def allevents():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM events")
     rows = cursor.fetchall()
-    cursor.close()
+    
     return (render_template('user/allevents.html', rows=rows ))
 
 
 @app.route('/userbooking')
 def userbooking():
-    return (render_template('user/booking.html'))
+    if 'username' in session:
+        # Retrieve the logged-in user from the session
+        username = session['username']
+        cursor = conn.cursor()
+        cursor.execute("SELECT name,names,events.date FROM books, events,customer WHERE books.username='"+username+"'AND books.event_id=events.event_id AND books.customer_id=customer.customer_id")
+        records = cursor.fetchall()
+        # Pass the records to the template
+        return render_template('user/booking.html', username=username, records=records)
+    else:
+        return redirect('/')
+
 
 #retrieve users to user dashboard
 @app.route('/userprofile')
@@ -212,11 +245,9 @@ def dashboard():
         query = "SELECT username, names, email, phone, address FROM customer WHERE username = %s"
         cursor.execute(query, (username,))
         records = cursor.fetchall()
-        cursor.close()
-        conn.close()
-
+        
         # Pass the records to the template
-        return render_template('user/profile.html', username=username, records=records)
+        return render_template('user/profile.html', username = username, records=records)
     else:
         return redirect('/')
 
@@ -227,7 +258,7 @@ def viewEvent(event_id):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM events WHERE event_id = %s", (event_id,))
     data = cursor.fetchall()[0]
-    cursor.close()
+    
     return (render_template('user/viewEvent.html', data=data))
 
 
@@ -237,7 +268,7 @@ def viewCustomer(customer_id):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM customer WHERE customer_id = %s", (customer_id,))
     data = cursor.fetchall()[0]
-    cursor.close()
+    
     return (render_template('user/viewEvent.html', data=data))
 
 
@@ -256,11 +287,18 @@ def userLogin():
         user = mycursor.fetchone()
 
         # Compare the retrieved password with the password entered by the user
-        if user and password == user[6]:
+        if not username:
+            return render_template('home.html', loginError = 'Username is empty')
+        
+        elif not password:
+            return render_template('home.html', loginError = 'Password is empty')
+        
+        elif user and password == user[6]:
             session['username'] = username
             return redirect('/userDashboard')
         else:
-            return render_template('home.html', error='Invalid username or password')
+            return render_template('home.html', loginError='Invalid username or password, Please try again !')
+        
 
     return render_template('home.html')
 
@@ -270,8 +308,6 @@ def userLogout():
     session.clear()
     return redirect('/')
 
-
-
 # book event routes
 @app.route('/bookevent/<int:id>')
 def book(id):
@@ -280,22 +316,28 @@ def book(id):
     cursor = conn.cursor()
     cursor.execute(sql,(username,))
     user = cursor.fetchone()
+    ev = "SELECT number FROM `events` WHERE `event_id` = %s limit 1"
+    cursor = conn.cursor()
+    cursor.execute(ev,(id,))
+    evn = cursor.fetchone()
     userId = user[0]
+    sizee = evn[0]
 
-    # save event bookings
-    sql = "INSERT INTO `books`(`customer_id`, `event_id`) VALUES (%s,%s)"
-    cursor.execute(sql,(userId,id))
-    conn.commit()
+    if sizee > 0:
+        # save event bookings
 
-    # updated event and remove bookings
-    sql = "UPDATE `events` SET `number` = `number`-1 WHERE `event_id` = %s"
-    cursor.execute(sql,(id,))
-    conn.commit()
-    cursor.close()
-    return redirect('/allevents')
-
-
-
+        sql = "INSERT INTO `books`(`customer_id`, `event_id`, `username`) VALUES (%s,%s,%s)"
+        cursor.execute(sql,(userId,id,username))
+        conn.commit()
+        
+        # updated event and remove bookings
+        sql = "UPDATE `events` SET `number` = `number`-1 WHERE `event_id` = %s"
+        cursor.execute(sql,(id,))
+        conn.commit()
+        return redirect('/allevents')
+    else:
+        flash('Ticket for this event have been finished!')
+        return redirect('/allevents')
 
 if __name__ == "__main__":
     app.run(debug=True)

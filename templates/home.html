@@ -31,73 +31,27 @@
             <a href="#contact" class="scroll text-white hover:text-cyan-200 mx-3">Contact</a>
             <a href="#about" class="scroll text-white hover:text-cyan-200 mx-3">About</a>
             <a href="#regist" class="scroll text-white hover:text-cyan-200 mx-3">Create Account</a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#modalId" class="scroll text-white hover:text-cyan-200 mx-3">Admin</a>
           </div>
         </nav>
       </div>
     </header>
-    
-    
-    <!-- Modal -->
-<div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content  bg-slate-900 rounded">
-              <div class="modal-header">
-                      <h5 class="modal-title text-2xl text-white" id="modalTitleId">Admin</h5>
-                          <button type="button" class="btn-close text-red-600" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-          <div class="modal-body">
-              <div class="container-fluid text-white">
-                  Enter Admin credentials
-                  <form action="/adminLogin" method="post">
-                    <!-- Username -->
-                    <div class="relative mt-4">
-                      <i class="fas fa-lock absolute left-3 top-3 mx-2 h-full w-8 text-gray-500"></i>
-                      <input
-                        type="text"
-                        name="username"
-                        placeholder="Admin Username"
-                        class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
-                        style="width: 440px;"
-                      />
-                    </div>
-                    <!-- Password -->
-                    <div class="relative mt-4">
-                      <i class="fas fa-lock absolute left-3 top-3 mx-2 h-full w-8 text-gray-500"></i>
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Admin Password"
-                        class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
-                        style="width: 440px;"
-                      />
-                    </div>
-                    <div class="flex justify-between mt-2" style="margin-right: 6px;">
-                      <p class="text-white">Remember me <input type="checkbox" name="check" id=""></p>
-                      <a href="#" class="text-teal-400">Forgot Password</a>
-                    </div>
-                    <!-- Submit Button -->
-                    <button
-                      type="submit"
-                      class="bg-teal-700 hover:bg-teal-600 text-gray-100 py-2 px-4 rounded mt-8 hover:bg-gray-600 w-full"
-                      ><i class="fas fa-sign-in-alt"></i>&nbsp;
-                        Sign In
-                    </button>
-                  </form>
-                  
-              </div>
-          </div>
+    <div class="w-full">
+    {% if loginError: %}
+      <div class="absolute top-[100] right-[0]">
+        <div class="bg-red-200 text-red-800 py-2 rounded" style="width: 500px; margin-right: 150px;">
+          <p class="mx-12">{{ loginError }}</p>
+        </div>
       </div>
+    {% endif %}
   </div>
-</div>
     <!-- Modal -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content  bg-slate-900 rounded">
-              <div class="modal-header">
-                      <h5 class="modal-title text-2xl text-white" id="modalTitleId">User Login</h5>
-                          <button type="button" class="btn-close text-red-600" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+              <div class="modal-header flex">
+                  <h5 class="modal-title text-2xl text-white" id="modalTitleId">User Login</h5>
+                  <button type="button" class="btn-close text-red-600" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
           <div class="modal-body">
               <div class="container-fluid text-white">
                   Enter user credentials
@@ -139,7 +93,6 @@
                       <a href="#regist" class="text-teal-400">Create New Account</a>
                     </div>
                   </form>
-                  
               </div>
           </div>
       </div>
@@ -174,6 +127,12 @@
       <div class="w-full max-w-md mx-12" style="opacity: none;">
         <div class="bg-gray-800 rounded-lg shadow-lg p-8" style="width: 550px;">
           <h1 class="text-xl font-bold mb-8 text-center text-gray-100">Create New Account</h1>
+          {% if error: %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  {{ error }}
+            </div>
+          {% endif %}
           <form action="/regist" method="post">
             <div class="grid grid-cols-2 gap-4">
               <!-- Username -->
@@ -213,7 +172,7 @@
               <div class="relative">
                 <i class="fas fa-phone absolute left-0 top-3 mx-2 h-full w-8 text-gray-500"></i>
                 <input
-                  type="tel"
+                  type="number"
                   name="phone"
                   placeholder="Phone"
                   class="form-input pl-10 bg-gray-700 rounded border-none py-2 text-gray-100"
@@ -344,5 +303,12 @@
   </div>
 </footer>
 
+
+<script>
+  var alertList = document.querySelectorAll('.alert');
+  alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert)
+  })
+</script>
   </body>
 </html>

@@ -29,13 +29,13 @@
         <div>
           <a href="/userDashboard" class="mx-4 font-bold text-white text-3xl">User | Panel</a>
         </div>
-        <p class="text-white text-2xl">E-ticket booking</p>
+        <p class="text-white text-2xl">Ticket Booking System</p>
         <div class="flex justify-end">
           <a class="text-white mx-2" href="#about">About</a>
           <a class="text-white mx-2" href="/userDashboard">Home</a>
           <div class="relative inline-block mx-4">
             <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-              <span class="mr-1">User</span>
+              <span class="mr-1"><i class="fas fa-user"></i>&nbsp;{{ session['username'] }}</span>
               <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 12l-5-5 1.41-1.41L10 9.17l3.59-3.58L15 7l-5 5z"/>
               </svg>
@@ -64,9 +64,26 @@
     </nav>
   </div>
   <!-- Content -->
-  <div class="flex-1 p-10 mt-10">
+  <div class="flex-1 p-10 mt-10 bg-slate-700">
     <div class="flex justify-center items-center">
-      <h1 class="text-3xl">My booking</h1>
+      <table class="w-full table-auto">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Client Name</th>
+            <th class="py-3 px-6 text-left">Event Name</th>
+            <th class="py-3 px-6 text-left">Date of Event</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in records: %}
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="py-3 px-6 text-left">{{ row[1] }}</td>
+              <td class="py-3 px-6 text-left">{{ row[0] }}</td>
+              <td class="py-3 px-6 text-left">{{ row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -67,7 +67,7 @@
     <div class="flex justify-center items-center">
         <!-- Create Event page -->
   <div class="container mx-auto">
-
+    {% if success: %}
     <div class="bg-green-100 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md alert" role="alert">
       <div class="flex">
         <div class="py-1 pr-2">
@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    
+    {% endif %}
     <script>
       const alertBox = document.querySelector('.alert');
     
@@ -122,8 +122,16 @@
   <input class="appearance-none bg-slate-400 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket_price" required>
 </div>
 <div class="my-4 mx-6">
+  <label class="block font-bold text-white mb-2" for="desc">Event Description</label>
+  <textarea class="appearance-none bg-slate-400 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" name="desc" required /></textarea>
+</div>
+<div class="my-4 mx-6">
+  <label class="block font-bold text-white mb-2" for="ticket_price">Number Of Ticket</label>
+  <input class="appearance-none bg-slate-400 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" type="number" name="ticket" required>
+</div>
+<div class="my-4 mx-6">
   <label class="block font-bold text-white mb-2" for="ticket_price">Upload Image</label>
-  <input class="appearance-none bg-slate-400 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" type="file" name="image" required>
+  <input class="appearance-none bg-slate-400 rounded w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline" type="file" name="image" required>
 </div>
 <div class="my-4 mx-6">
   <button type="submit" class="hover:bg-teal-700 bg-teal-800 text-white font-bold py-2 px-4 rounded">Create event</button>

@@ -76,8 +76,8 @@
           <table class="w-full table-auto">
             <thead>
               <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                <th class="py-3 px-6 text-left">CustomerID</th>
-                <th class="py-3 px-6 text-left">EventID</th>
+                <th class="py-3 px-6 text-left">Client Name</th>
+                <th class="py-3 px-6 text-left">Event Name</th>
                 <th class="py-3 px-6 text-left">Date of Event</th>
               </tr>
             </thead>
@@ -85,8 +85,8 @@
               {% for row in rows %}
                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                   <td class="py-3 px-6 text-left">{{ row[1] }}</td>
+                  <td class="py-3 px-6 text-left">{{ row[0] }}</td>
                   <td class="py-3 px-6 text-left">{{ row[2] }}</td>
-                  <td class="py-3 px-6 text-left">{{ row[3] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
